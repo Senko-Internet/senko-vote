@@ -1,0 +1,18 @@
+{
+  "name": "senko-vote",
+  "version": "1.0.0",
+  "description": "Senko-Vote - Discord投票転送Bot",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.7"
+  }
+}

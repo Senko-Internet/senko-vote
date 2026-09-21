@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: senko-vote
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: MTU1MTQ1OTkxMjY0NTc0NjczOA.Gpwjmc.UFpgNjxaMMxniBnWGBCoSmaUOkBjVKqEKRQ0N4
+      - key: SOURCE_CHANNEL_ID
+        value: "1551462058862845993"
+      - key: DESTINATION_CHANNEL_ID
+        value: "1551462066768977970"
+      - key: FORWARD_POLL_ONLY
+        value: "true"
