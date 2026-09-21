@@ -5,9 +5,29 @@ import {
   GatewayIntentBits,
   Partials,
 } from "discord.js";
+import express from 'express'; // ⭕ インポート文を上部に整理
 import { config } from "./config.js";
 import { forwardMessage, isVoteFormMessage } from "./forward.js";
 
+// ==========================================
+// 1. Render用ダッシュボード（Webサーバー）の起動
+// ==========================================
+const app = express();
+const PORT = process.env.PORT || 10000;
+
+// Renderからの通信に「動いてるよ」と即座に応答するルート
+app.get('/', (req, res) => {
+  res.send('Senko-Vote Bot is running perfectly!');
+});
+
+// サーバーを指定ポートで起動
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`[Render] Webサーバーがポート ${PORT} で起動しました。`);
+});
+
+// ==========================================
+// 2. Discord Bot（Discord.js）の処理
+// ==========================================
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -52,4 +72,5 @@ client.on(Events.MessageCreate, async (message) => {
   }
 });
 
+// 最後にDiscordにログイン
 client.login(config.token);
