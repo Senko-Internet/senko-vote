@@ -75,6 +75,8 @@ client.on(Events.MessageCreate, async (message) => {
 
   try {
     await forwardMessage(message, destinationChannel);
+    // ⭕ 転送に成功した後、追加のメッセージを送信
+    await destinationChannel.send("新たな投票が始まりました↑"); 
     console.log(`転送成功: ${message.id}`);
   } catch (error) {
     console.error(`転送失敗 (${message.id}):`, error);
