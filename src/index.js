@@ -35,7 +35,13 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
   ],
   partials: [Partials.Channel],
+  // 👇 以下の3行を新しく追加してください（通信制限時の自動再試行を強化します）
+  ws: {
+    large_threshold: 250,
+  },
+  restRequestTimeout: 30000,
 });
+
 
 client.on("debug", (info) => console.log(`[Discord Debug] ${info}`));
 client.on("error", (error) => console.error(`[Discord Error]`, error));
