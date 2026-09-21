@@ -37,6 +37,9 @@ const client = new Client({
   partials: [Partials.Channel],
 });
 
+client.on("debug", (info) => console.log(`[Discord Debug] ${info}`));
+client.on("error", (error) => console.error(`[Discord Error]`, error));
+
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Senko-Vote 起動完了: ${readyClient.user.tag}`);
   console.log(`監視チャンネル: ${config.sourceChannelId}`);
