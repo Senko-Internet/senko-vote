@@ -50,6 +50,11 @@ export async function forwardMessage(message, destinationChannel) {
 }
 
 export function isVoteFormMessage(message) {
+  // ⭕ 追加：「が終了しました。」が含まれている場合は転送しない（除外条件）
+  if (message.content?.includes("が終了しました。")) {
+    return false;
+  }
+
   if (message.poll) {
     return true;
   }
